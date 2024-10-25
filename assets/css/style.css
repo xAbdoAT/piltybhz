@@ -25,7 +25,6 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem; /* Add padding for small screens */
 }
 
 header {
@@ -202,27 +201,21 @@ footer p {
     background: var(--accent);
 }
 
-/* Responsive Adjustments */
+/* Responsive styles */
 @media (max-width: 768px) {
     .title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
-    
-    .subtitle {
+
+    .subtitle, .warning {
         font-size: 1.2rem;
     }
-    
+
     .game-title {
         font-size: 1.2rem;
     }
-    
-    .download-button {
-        padding: 0.5rem;
-    }
-    
-    .social-icon {
-        font-size: 1.2rem;
-        width: 40px;
-        height: 40px;
+
+    .download-grid {
+        grid-template-columns: 1fr;
     }
 }
