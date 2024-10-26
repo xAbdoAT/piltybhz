@@ -4,60 +4,74 @@
     --card-bg: #1e1e1e;
     --text: #ffffff;
     --accent: #ff3333;
+    --transition: all 0.3s ease;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='red'><circle cx='12' cy='12' r='6' fill='red'/></svg>") 12 12, auto;
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--background);
     color: var(--text);
     line-height: 1.6;
-    padding: 1rem;
+    padding: 0;
     min-height: 100vh;
     font-size: 16px;
-}
-
-/* Initial scale for better mobile viewing */
-@viewport {
-    width: device-width;
-    zoom: 0.5;
-    min-zoom: 0.5;
-    max-zoom: 0.5;
-    user-zoom: fixed;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 1rem;
 }
 
 header {
-    text-align: center;
-    margin-bottom: 2rem;
-    position: relative;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), var(--background));
+    padding: 0.75rem 0.5rem; /* Reduced padding further */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: max-content; /* Ensure header only takes needed height */
 }
 
 .title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.25rem, 4vw, 2rem); /* Reduced font size */
     color: var(--primary);
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    font-weight: 800;
-    word-wrap: break-word;
+    margin-bottom: 0.25rem; /* Reduced margin */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    font-weight: 900;
+    letter-spacing: -1px;
 }
 
 .subtitle {
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    color: #888;
-    margin-bottom: 1rem;
+    font-size: clamp(1rem, 3vw, 1.5rem); /* Reduced font size */
+    margin-bottom: 0.25rem; /* Reduced margin */
+}
+
+.warning {
+    font-size: 0.9rem; /* Smaller font size */
+    margin-bottom: 0.25rem; /* Reduced margin */
+}
+
+.warning-banner {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid var(--primary);
+    padding: 0.5rem; /* Reduced padding */
+    border-radius: 10px;
+    margin: 0.5rem 0; /* Reduced margin */
+    animation: pulse 2s infinite;
+}
+
+.warning-banner h3 {
+    font-size: 0.9rem; /* Smaller font size */
+    margin: 0;
 }
 
 .game-section {
@@ -65,175 +79,167 @@ header {
     border-radius: 15px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    transition: transform 0.3s;
+    transition: var(--transition);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .game-title {
     color: var(--primary);
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     flex-wrap: wrap;
+    position: relative;
+}
+
+.game-specs {
+    font-size: 0.8em;
+    background: rgba(255, 0, 0, 0.2);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    margin-left: auto;
 }
 
 .download-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1rem;
 }
 
 .download-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1rem;
-    border-radius: 10px;
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    background: rgba(30, 30, 30, 0.95);
+    padding: 1.25rem;
+    border-radius: 12px;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.download-item p {
-    font-size: 0.9rem;
-    margin: 0;
+.download-item:hover {
+    transform: translateY(-2px);
+    background: rgba(40, 40, 40, 0.95);
 }
 
 .download-button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background: var(--primary);
+    background: linear-gradient(45deg, var(--primary), var(--accent));
     color: white;
-    padding: 0.75rem 1rem;
-    border-radius: 5px;
+    padding: 0.875rem 1.25rem;
+    border-radius: 8px;
     text-decoration: none;
-    transition: 0.3s;
+    transition: var(--transition);
     width: 100%;
-    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    overflow: hidden;
 }
 
-.credits {
-    font-size: 0.8rem;
-    color: #666;
+.download-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
 }
 
-.warning-banner {
-    background: rgba(255, 0, 0, 0.1);
-    border: 1px solid var(--primary);
-    padding: 1rem;
-    border-radius: 10px;
-    margin: 1rem 0;
-    text-align: center;
-}
-
-.warning-banner h3 {
-    font-size: clamp(0.9rem, 3vw, 1.1rem);
-}
-
-footer {
-    text-align: center;
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-footer p {
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    margin-bottom: 0.5rem;
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
 }
 
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .social-icon {
     color: var(--text);
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    padding: 0.5rem;
+    font-size: 1.4rem;
+    transition: var(--transition);
+    padding: 0.75rem;
     border-radius: 50%;
     background: var(--card-bg);
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Media Queries */
-@media screen and (max-width: 768px) {
+.social-icon:hover {
+    transform: translateY(-2px);
+    background: var(--primary);
+    color: white;
+}
+
+@media (max-width: 768px) {
     body {
-        padding: 0.5rem;
-        zoom: 0.5;
-        -webkit-text-size-adjust: none;
+        font-size: 14px;
     }
 
     .container {
-        padding: 0 0.5rem;
+        padding: 0.75rem;
     }
 
-    .game-section {
-        padding: 1rem;
-    }
-
-    .download-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .game-specs {
-        display: block;
-        margin-left: 0;
-        margin-top: 0.5rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
     .download-grid {
         grid-template-columns: 1fr;
     }
 
-    .social-icons {
-        gap: 0.5rem;
+    .download-item {
+        padding: 1rem;
     }
 
     .social-icon {
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
     }
 }
 
-/* Maintain zoom level */
-@media screen and (max-width: 1024px) {
-    html {
-        zoom: 0.5;
-        -ms-zoom: 0.5;
-        -webkit-zoom: 0.5;
-    }
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
+.loading .loading-indicator {
+    display: block;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     background: var(--primary);
-    border-radius: 5px;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0;
+    transition: var(--transition);
+    z-index: 1000;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent);
+#backToTop.visible {
+    opacity: 1;
+    cursor: pointer;
 }
