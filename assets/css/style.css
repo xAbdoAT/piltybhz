@@ -18,65 +18,70 @@ body {
     background-color: var(--background);
     color: var(--text);
     line-height: 1.6;
-    padding: 2rem;
+    padding: 1rem;
     min-height: 100vh;
+    font-size: 16px;
+}
+
+/* Initial scale for better mobile viewing */
+@viewport {
+    width: device-width;
+    zoom: 0.5;
+    min-zoom: 0.5;
+    max-zoom: 0.5;
+    user-zoom: fixed;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     position: relative;
 }
 
 .title {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     color: var(--primary);
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     font-weight: 800;
+    word-wrap: break-word;
 }
 
 .subtitle {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.5rem);
     color: #888;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .game-section {
     background: var(--card-bg);
     border-radius: 15px;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
     transition: transform 0.3s;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.game-section:hover {
-    transform: translateY(-5px);
-}
-
 .game-title {
     color: var(--primary);
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
-}
-
-.game-title::before {
-    content: '🎮';
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .download-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
 }
 
@@ -85,35 +90,34 @@ header {
     padding: 1rem;
     border-radius: 10px;
     transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.download-item:hover {
-    background: rgba(255, 255, 255, 0.1);
+.download-item p {
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 .download-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     background: var(--primary);
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem;
     border-radius: 5px;
     text-decoration: none;
     transition: 0.3s;
-    margin-top: 0.5rem;
-}
-
-.download-button:hover {
-    background: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    width: 100%;
+    font-size: 0.9rem;
 }
 
 .credits {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #666;
-    margin-top: 0.5rem;
 }
 
 .warning-banner {
@@ -121,71 +125,104 @@ header {
     border: 1px solid var(--primary);
     padding: 1rem;
     border-radius: 10px;
-    margin: 2rem 0;
+    margin: 1rem 0;
     text-align: center;
+}
+
+.warning-banner h3 {
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
 footer {
     text-align: center;
-    margin-top: 4rem;
-    padding: 2rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 footer p {
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     margin-bottom: 0.5rem;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.warning {
-    animation: pulse 2s infinite;
-    color: var(--primary);
-}
-
-.game-specs {
-    font-size: 0.9rem;
-    color: #888;
-    margin-left: 1rem;
 }
 
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     margin-top: 1rem;
+    flex-wrap: wrap;
 }
 
 .social-icon {
     color: var(--text);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     transition: all 0.3s ease;
     padding: 0.5rem;
     border-radius: 50%;
     background: var(--card-bg);
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
 }
 
-.social-icon:hover {
-    background: var(--primary);
-    transform: translateY(-3px);
-    color: var(--text);
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 0.5rem;
+        zoom: 0.5;
+        -webkit-text-size-adjust: none;
+    }
+
+    .container {
+        padding: 0 0.5rem;
+    }
+
+    .game-section {
+        padding: 1rem;
+    }
+
+    .download-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .game-specs {
+        display: block;
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .download-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-icons {
+        gap: 0.5rem;
+    }
+
+    .social-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+/* Maintain zoom level */
+@media screen and (max-width: 1024px) {
+    html {
+        zoom: 0.5;
+        -ms-zoom: 0.5;
+        -webkit-zoom: 0.5;
+    }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -199,23 +236,4 @@ footer p {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    .title {
-        font-size: 2rem;
-    }
-
-    .subtitle, .warning {
-        font-size: 1.2rem;
-    }
-
-    .game-title {
-        font-size: 1.2rem;
-    }
-
-    .download-grid {
-        grid-template-columns: 1fr;
-    }
 }
